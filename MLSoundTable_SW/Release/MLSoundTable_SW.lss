@@ -1,0 +1,352 @@
+
+MLSoundTable_SW.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000025e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000016  00800060  0000025e  000002f2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800076  00800076  00000308  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000308  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000338  2**2
+                  CONTENTS, READONLY
+  5 .debug_info   0000048c  00000000  00000000  00000374  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000044e  00000000  00000000  00000800  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000109  00000000  00000000  00000c4e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000017a  00000000  00000000  00000d57  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	6a c0       	rjmp	.+212    	; 0xd8 <__vector_1>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	ee e5       	ldi	r30, 0x5E	; 94
+  3a:	f2 e0       	ldi	r31, 0x02	; 2
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a6 37       	cpi	r26, 0x76	; 118
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	20 e0       	ldi	r18, 0x00	; 0
+  4a:	a6 e7       	ldi	r26, 0x76	; 118
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a7 37       	cpi	r26, 0x77	; 119
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	ae d0       	rcall	.+348    	; 0x1b6 <main>
+  5a:	ff c0       	rjmp	.+510    	; 0x25a <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <uartInit>:
+  5e:	87 e7       	ldi	r24, 0x77	; 119
+  60:	89 b9       	out	0x09, r24	; 9
+  62:	10 bc       	out	0x20, r1	; 32
+  64:	80 b5       	in	r24, 0x20	; 32
+  66:	86 68       	ori	r24, 0x86	; 134
+  68:	80 bd       	out	0x20, r24	; 32
+  6a:	8a b1       	in	r24, 0x0a	; 10
+  6c:	88 61       	ori	r24, 0x18	; 24
+  6e:	8a b9       	out	0x0a, r24	; 10
+  70:	08 95       	ret
+
+00000072 <uartSendByte>:
+  72:	5d 9b       	sbis	0x0b, 5	; 11
+  74:	fe cf       	rjmp	.-4      	; 0x72 <uartSendByte>
+  76:	8c b9       	out	0x0c, r24	; 12
+  78:	08 95       	ret
+
+0000007a <redLED>:
+  7a:	81 30       	cpi	r24, 0x01	; 1
+  7c:	11 f4       	brne	.+4      	; 0x82 <redLED+0x8>
+  7e:	c2 9a       	sbi	0x18, 2	; 24
+  80:	08 95       	ret
+  82:	c2 98       	cbi	0x18, 2	; 24
+  84:	08 95       	ret
+
+00000086 <yellowLED>:
+  86:	81 30       	cpi	r24, 0x01	; 1
+  88:	11 f4       	brne	.+4      	; 0x8e <yellowLED+0x8>
+  8a:	c1 9a       	sbi	0x18, 1	; 24
+  8c:	08 95       	ret
+  8e:	c1 98       	cbi	0x18, 1	; 24
+  90:	08 95       	ret
+
+00000092 <hwInit>:
+  92:	b9 9a       	sbi	0x17, 1	; 23
+  94:	ba 9a       	sbi	0x17, 2	; 23
+  96:	92 9a       	sbi	0x12, 2	; 18
+  98:	e2 df       	rcall	.-60     	; 0x5e <uartInit>
+  9a:	81 b3       	in	r24, 0x11	; 17
+  9c:	88 6f       	ori	r24, 0xF8	; 248
+  9e:	81 bb       	out	0x11, r24	; 17
+  a0:	82 b3       	in	r24, 0x12	; 18
+  a2:	88 6f       	ori	r24, 0xF8	; 248
+  a4:	82 bb       	out	0x12, r24	; 18
+  a6:	85 b3       	in	r24, 0x15	; 21
+  a8:	8f 63       	ori	r24, 0x3F	; 63
+  aa:	85 bb       	out	0x15, r24	; 21
+  ac:	82 9b       	sbis	0x10, 2	; 16
+  ae:	07 c0       	rjmp	.+14     	; 0xbe <hwInit+0x2c>
+  b0:	81 e0       	ldi	r24, 0x01	; 1
+  b2:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <__data_end>
+  b6:	80 e0       	ldi	r24, 0x00	; 0
+  b8:	e0 df       	rcall	.-64     	; 0x7a <redLED>
+  ba:	c1 9a       	sbi	0x18, 1	; 24
+  bc:	05 c0       	rjmp	.+10     	; 0xc8 <hwInit+0x36>
+  be:	10 92 76 00 	sts	0x0076, r1	; 0x800076 <__data_end>
+  c2:	c2 9a       	sbi	0x18, 2	; 24
+  c4:	80 e0       	ldi	r24, 0x00	; 0
+  c6:	df df       	rcall	.-66     	; 0x86 <yellowLED>
+  c8:	8b b7       	in	r24, 0x3b	; 59
+  ca:	80 64       	ori	r24, 0x40	; 64
+  cc:	8b bf       	out	0x3b, r24	; 59
+  ce:	85 b7       	in	r24, 0x35	; 53
+  d0:	81 60       	ori	r24, 0x01	; 1
+  d2:	85 bf       	out	0x35, r24	; 53
+  d4:	78 94       	sei
+  d6:	08 95       	ret
+
+000000d8 <__vector_1>:
+  d8:	1f 92       	push	r1
+  da:	0f 92       	push	r0
+  dc:	0f b6       	in	r0, 0x3f	; 63
+  de:	0f 92       	push	r0
+  e0:	11 24       	eor	r1, r1
+  e2:	2f 93       	push	r18
+  e4:	3f 93       	push	r19
+  e6:	4f 93       	push	r20
+  e8:	5f 93       	push	r21
+  ea:	6f 93       	push	r22
+  ec:	7f 93       	push	r23
+  ee:	8f 93       	push	r24
+  f0:	9f 93       	push	r25
+  f2:	af 93       	push	r26
+  f4:	bf 93       	push	r27
+  f6:	ef 93       	push	r30
+  f8:	ff 93       	push	r31
+  fa:	82 9b       	sbis	0x10, 2	; 16
+  fc:	07 c0       	rjmp	.+14     	; 0x10c <__vector_1+0x34>
+  fe:	81 e0       	ldi	r24, 0x01	; 1
+ 100:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <__data_end>
+ 104:	80 e0       	ldi	r24, 0x00	; 0
+ 106:	b9 df       	rcall	.-142    	; 0x7a <redLED>
+ 108:	c1 9a       	sbi	0x18, 1	; 24
+ 10a:	05 c0       	rjmp	.+10     	; 0x116 <__vector_1+0x3e>
+ 10c:	10 92 76 00 	sts	0x0076, r1	; 0x800076 <__data_end>
+ 110:	c2 9a       	sbi	0x18, 2	; 24
+ 112:	80 e0       	ldi	r24, 0x00	; 0
+ 114:	b8 df       	rcall	.-144    	; 0x86 <yellowLED>
+ 116:	ff 91       	pop	r31
+ 118:	ef 91       	pop	r30
+ 11a:	bf 91       	pop	r27
+ 11c:	af 91       	pop	r26
+ 11e:	9f 91       	pop	r25
+ 120:	8f 91       	pop	r24
+ 122:	7f 91       	pop	r23
+ 124:	6f 91       	pop	r22
+ 126:	5f 91       	pop	r21
+ 128:	4f 91       	pop	r20
+ 12a:	3f 91       	pop	r19
+ 12c:	2f 91       	pop	r18
+ 12e:	0f 90       	pop	r0
+ 130:	0f be       	out	0x3f, r0	; 63
+ 132:	0f 90       	pop	r0
+ 134:	1f 90       	pop	r1
+ 136:	18 95       	reti
+
+00000138 <checkButton>:
+ 138:	0f 93       	push	r16
+ 13a:	1f 93       	push	r17
+ 13c:	cf 93       	push	r28
+ 13e:	df 93       	push	r29
+ 140:	e6 e6       	ldi	r30, 0x66	; 102
+ 142:	f0 e0       	ldi	r31, 0x00	; 0
+ 144:	47 e0       	ldi	r20, 0x07	; 7
+ 146:	8f ef       	ldi	r24, 0xFF	; 255
+ 148:	a1 e0       	ldi	r26, 0x01	; 1
+ 14a:	b0 e0       	ldi	r27, 0x00	; 0
+ 14c:	22 b3       	in	r18, 0x12	; 18
+ 14e:	8f 01       	movw	r16, r30
+ 150:	bd 01       	movw	r22, r26
+ 152:	00 80       	ld	r0, Z
+ 154:	02 c0       	rjmp	.+4      	; 0x15a <checkButton+0x22>
+ 156:	66 0f       	add	r22, r22
+ 158:	77 1f       	adc	r23, r23
+ 15a:	0a 94       	dec	r0
+ 15c:	e2 f7       	brpl	.-8      	; 0x156 <checkButton+0x1e>
+ 15e:	96 2f       	mov	r25, r22
+ 160:	90 95       	com	r25
+ 162:	92 23       	and	r25, r18
+ 164:	92 bb       	out	0x12, r25	; 18
+ 166:	60 e6       	ldi	r22, 0x60	; 96
+ 168:	70 e0       	ldi	r23, 0x00	; 0
+ 16a:	9a ef       	ldi	r25, 0xFA	; 250
+ 16c:	94 0f       	add	r25, r20
+ 16e:	23 b3       	in	r18, 0x13	; 19
+ 170:	30 e0       	ldi	r19, 0x00	; 0
+ 172:	eb 01       	movw	r28, r22
+ 174:	09 90       	ld	r0, Y+
+ 176:	02 c0       	rjmp	.+4      	; 0x17c <checkButton+0x44>
+ 178:	35 95       	asr	r19
+ 17a:	27 95       	ror	r18
+ 17c:	0a 94       	dec	r0
+ 17e:	e2 f7       	brpl	.-8      	; 0x178 <checkButton+0x40>
+ 180:	be 01       	movw	r22, r28
+ 182:	20 ff       	sbrs	r18, 0
+ 184:	89 2f       	mov	r24, r25
+ 186:	9f 5f       	subi	r25, 0xFF	; 255
+ 188:	94 13       	cpse	r25, r20
+ 18a:	f1 cf       	rjmp	.-30     	; 0x16e <checkButton+0x36>
+ 18c:	42 b3       	in	r20, 0x12	; 18
+ 18e:	31 96       	adiw	r30, 0x01	; 1
+ 190:	9d 01       	movw	r18, r26
+ 192:	e8 01       	movw	r28, r16
+ 194:	08 80       	ld	r0, Y
+ 196:	02 c0       	rjmp	.+4      	; 0x19c <checkButton+0x64>
+ 198:	22 0f       	add	r18, r18
+ 19a:	33 1f       	adc	r19, r19
+ 19c:	0a 94       	dec	r0
+ 19e:	e2 f7       	brpl	.-8      	; 0x198 <checkButton+0x60>
+ 1a0:	24 2b       	or	r18, r20
+ 1a2:	22 bb       	out	0x12, r18	; 18
+ 1a4:	46 e0       	ldi	r20, 0x06	; 6
+ 1a6:	49 0f       	add	r20, r25
+ 1a8:	45 32       	cpi	r20, 0x25	; 37
+ 1aa:	81 f6       	brne	.-96     	; 0x14c <checkButton+0x14>
+ 1ac:	df 91       	pop	r29
+ 1ae:	cf 91       	pop	r28
+ 1b0:	1f 91       	pop	r17
+ 1b2:	0f 91       	pop	r16
+ 1b4:	08 95       	ret
+
+000001b6 <main>:
+ 1b6:	6d df       	rcall	.-294    	; 0x92 <hwInit>
+ 1b8:	61 e0       	ldi	r22, 0x01	; 1
+ 1ba:	70 e0       	ldi	r23, 0x00	; 0
+ 1bc:	89 e0       	ldi	r24, 0x09	; 9
+ 1be:	2d d0       	rcall	.+90     	; 0x21a <mp3SendCmd>
+ 1c0:	bb df       	rcall	.-138    	; 0x138 <checkButton>
+ 1c2:	8f 3f       	cpi	r24, 0xFF	; 255
+ 1c4:	e9 f3       	breq	.-6      	; 0x1c0 <main+0xa>
+ 1c6:	90 91 76 00 	lds	r25, 0x0076	; 0x800076 <__data_end>
+ 1ca:	68 2f       	mov	r22, r24
+ 1cc:	70 e0       	ldi	r23, 0x00	; 0
+ 1ce:	99 23       	and	r25, r25
+ 1d0:	31 f0       	breq	.+12     	; 0x1de <main+0x28>
+ 1d2:	7e 5f       	subi	r23, 0xFE	; 254
+ 1d4:	8f e0       	ldi	r24, 0x0F	; 15
+ 1d6:	21 d0       	rcall	.+66     	; 0x21a <mp3SendCmd>
+ 1d8:	80 e0       	ldi	r24, 0x00	; 0
+ 1da:	55 df       	rcall	.-342    	; 0x86 <yellowLED>
+ 1dc:	05 c0       	rjmp	.+10     	; 0x1e8 <main+0x32>
+ 1de:	73 95       	inc	r23
+ 1e0:	8f e0       	ldi	r24, 0x0F	; 15
+ 1e2:	1b d0       	rcall	.+54     	; 0x21a <mp3SendCmd>
+ 1e4:	80 e0       	ldi	r24, 0x00	; 0
+ 1e6:	49 df       	rcall	.-366    	; 0x7a <redLED>
+ 1e8:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <__data_end>
+ 1ec:	88 23       	and	r24, r24
+ 1ee:	19 f0       	breq	.+6      	; 0x1f6 <main+0x40>
+ 1f0:	81 e0       	ldi	r24, 0x01	; 1
+ 1f2:	49 df       	rcall	.-366    	; 0x86 <yellowLED>
+ 1f4:	e5 cf       	rjmp	.-54     	; 0x1c0 <main+0xa>
+ 1f6:	81 e0       	ldi	r24, 0x01	; 1
+ 1f8:	40 df       	rcall	.-384    	; 0x7a <redLED>
+ 1fa:	e2 cf       	rjmp	.-60     	; 0x1c0 <main+0xa>
+
+000001fc <mp3GetChecksum>:
+ 1fc:	ec e6       	ldi	r30, 0x6C	; 108
+ 1fe:	f0 e0       	ldi	r31, 0x00	; 0
+ 200:	80 e0       	ldi	r24, 0x00	; 0
+ 202:	90 e0       	ldi	r25, 0x00	; 0
+ 204:	21 91       	ld	r18, Z+
+ 206:	82 0f       	add	r24, r18
+ 208:	91 1d       	adc	r25, r1
+ 20a:	20 e0       	ldi	r18, 0x00	; 0
+ 20c:	e2 37       	cpi	r30, 0x72	; 114
+ 20e:	f2 07       	cpc	r31, r18
+ 210:	c9 f7       	brne	.-14     	; 0x204 <mp3GetChecksum+0x8>
+ 212:	91 95       	neg	r25
+ 214:	81 95       	neg	r24
+ 216:	91 09       	sbc	r25, r1
+ 218:	08 95       	ret
+
+0000021a <mp3SendCmd>:
+ 21a:	cf 93       	push	r28
+ 21c:	df 93       	push	r29
+ 21e:	96 e0       	ldi	r25, 0x06	; 6
+ 220:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <mp3SendBuff+0x2>
+ 224:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <mp3SendBuff+0x3>
+ 228:	10 92 6f 00 	sts	0x006F, r1	; 0x80006f <mp3SendBuff+0x4>
+ 22c:	70 93 70 00 	sts	0x0070, r23	; 0x800070 <mp3SendBuff+0x5>
+ 230:	60 93 71 00 	sts	0x0071, r22	; 0x800071 <mp3SendBuff+0x6>
+ 234:	e3 df       	rcall	.-58     	; 0x1fc <mp3GetChecksum>
+ 236:	90 93 72 00 	sts	0x0072, r25	; 0x800072 <mp3SendBuff+0x7>
+ 23a:	80 93 73 00 	sts	0x0073, r24	; 0x800073 <mp3SendBuff+0x8>
+ 23e:	8f ee       	ldi	r24, 0xEF	; 239
+ 240:	80 93 74 00 	sts	0x0074, r24	; 0x800074 <mp3SendBuff+0x9>
+ 244:	cb e6       	ldi	r28, 0x6B	; 107
+ 246:	d0 e0       	ldi	r29, 0x00	; 0
+ 248:	89 91       	ld	r24, Y+
+ 24a:	13 df       	rcall	.-474    	; 0x72 <uartSendByte>
+ 24c:	80 e0       	ldi	r24, 0x00	; 0
+ 24e:	c5 37       	cpi	r28, 0x75	; 117
+ 250:	d8 07       	cpc	r29, r24
+ 252:	d1 f7       	brne	.-12     	; 0x248 <mp3SendCmd+0x2e>
+ 254:	df 91       	pop	r29
+ 256:	cf 91       	pop	r28
+ 258:	08 95       	ret
+
+0000025a <_exit>:
+ 25a:	f8 94       	cli
+
+0000025c <__stop_program>:
+ 25c:	ff cf       	rjmp	.-2      	; 0x25c <__stop_program>

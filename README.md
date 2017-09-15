@@ -1,5 +1,4 @@
 # MLSoundTable
-No optimization is allowed.
 
 MLSoundTable is a device playing MP3 files according to button pushes.
 There is a table with 30 button (5 rows, 6 columns), a toggle switch and 2 feedback LEDs.

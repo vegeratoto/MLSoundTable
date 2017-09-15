@@ -1,0 +1,560 @@
+
+MLSoundTable_SW.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000256  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000016  00800060  00000256  000002ea  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800076  00800076  00000300  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000300  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000330  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000b0  00000000  00000000  0000036c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000aa2  00000000  00000000  0000041c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000779  00000000  00000000  00000ebe  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000005ed  00000000  00000000  00001637  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001a4  00000000  00000000  00001c24  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003b1  00000000  00000000  00001dc8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000437  00000000  00000000  00002179  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000080  00000000  00000000  000025b0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	6c c0       	rjmp	.+216    	; 0xdc <__vector_1>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e6 e5       	ldi	r30, 0x56	; 86
+  3a:	f2 e0       	ldi	r31, 0x02	; 2
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a6 37       	cpi	r26, 0x76	; 118
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	20 e0       	ldi	r18, 0x00	; 0
+  4a:	a6 e7       	ldi	r26, 0x76	; 118
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a7 37       	cpi	r26, 0x77	; 119
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	aa d0       	rcall	.+340    	; 0x1ae <main>
+  5a:	fb c0       	rjmp	.+502    	; 0x252 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <uartInit>:
+
+uint8_t uartGetByte()
+{
+	while(!(UCSRA & (1<<RXC)));
+	return UDR;	
+}
+  5e:	87 e7       	ldi	r24, 0x77	; 119
+  60:	89 b9       	out	0x09, r24	; 9
+  62:	10 bc       	out	0x20, r1	; 32
+  64:	80 b5       	in	r24, 0x20	; 32
+  66:	86 68       	ori	r24, 0x86	; 134
+  68:	80 bd       	out	0x20, r24	; 32
+  6a:	8a b1       	in	r24, 0x0a	; 10
+  6c:	88 61       	ori	r24, 0x18	; 24
+  6e:	8a b9       	out	0x0a, r24	; 10
+  70:	08 95       	ret
+
+00000072 <uartSendByte>:
+
+void uartSendByte(uint8_t data)
+{
+	while(!(UCSRA & (1<<UDRE)));
+  72:	5d 9b       	sbis	0x0b, 5	; 11
+  74:	fe cf       	rjmp	.-4      	; 0x72 <uartSendByte>
+	UDR = data;	
+  76:	8c b9       	out	0x0c, r24	; 12
+  78:	08 95       	ret
+
+0000007a <redLED>:
+}
+
+void redLED(uint8_t state)
+{
+	if(state == ON)
+  7a:	81 30       	cpi	r24, 0x01	; 1
+  7c:	11 f4       	brne	.+4      	; 0x82 <redLED+0x8>
+		RED_LED_PORT |= (1<<RED_LED_PIN);
+  7e:	c2 9a       	sbi	0x18, 2	; 24
+  80:	08 95       	ret
+	else
+		RED_LED_PORT &= ~(1<<RED_LED_PIN);
+  82:	c2 98       	cbi	0x18, 2	; 24
+  84:	08 95       	ret
+
+00000086 <yellowLED>:
+	
+}
+
+void yellowLED(uint8_t state)
+{
+	if(state == ON)
+  86:	81 30       	cpi	r24, 0x01	; 1
+  88:	11 f4       	brne	.+4      	; 0x8e <yellowLED+0x8>
+		YELLOW_LED_PORT |= (1<<YELLOW_LED_PIN);
+  8a:	c1 9a       	sbi	0x18, 1	; 24
+  8c:	08 95       	ret
+	else
+		YELLOW_LED_PORT &=~(1<<YELLOW_LED_PIN);
+  8e:	c1 98       	cbi	0x18, 1	; 24
+  90:	08 95       	ret
+
+00000092 <hwInit>:
+	UCSRB |= (1 << RXEN) | (1 << TXEN);
+}
+
+void hwInit()
+{
+	YELLOW_LED_DDR |= (1<<YELLOW_LED_PIN);		// yellow led port output
+  92:	b9 9a       	sbi	0x17, 1	; 23
+	RED_LED_DDR |=  (1<<RED_LED_PIN);			// red led port output
+  94:	ba 9a       	sbi	0x17, 2	; 23
+	
+	SWITCH_PORT |= (1<<SWITCH_PIN);				// turn on internal pull-up resistor to toggle switch
+  96:	92 9a       	sbi	0x12, 2	; 18
+	
+	uartInit();
+  98:	e2 df       	rcall	.-60     	; 0x5e <uartInit>
+
+	ROW_DDR |= (1<<ROW0_PIN) | (1<<ROW1_PIN) | (1<<ROW2_PIN) | (1<<ROW3_PIN) | (1<<ROW4_PIN);					// rows are outputs
+  9a:	81 b3       	in	r24, 0x11	; 17
+  9c:	88 6f       	ori	r24, 0xF8	; 248
+  9e:	81 bb       	out	0x11, r24	; 17
+	ROW_PORT |= (1<<ROW0_PIN) | (1<<ROW1_PIN) | (1<<ROW2_PIN) | (1<<ROW3_PIN) | (1<<ROW4_PIN);					// and all rows have logic 1
+  a0:	82 b3       	in	r24, 0x12	; 18
+  a2:	88 6f       	ori	r24, 0xF8	; 248
+  a4:	82 bb       	out	0x12, r24	; 18
+	COL_PORT |= (1<<COL0_PIN) | (1<<COL1_PIN) | (1<<COL2_PIN) | (1<<COL3_PIN) | (1<<COL4_PIN) | (1<<COL5_PIN);	// columns are inputs with pull-up resistors
+  a6:	85 b3       	in	r24, 0x15	; 21
+  a8:	8f 63       	ori	r24, 0x3F	; 63
+  aa:	85 bb       	out	0x15, r24	; 21
+	
+	// check toggle switch after init
+	if(SWITCH_PINx & (1<<SWITCH_PIN))
+  ac:	82 9b       	sbis	0x10, 2	; 16
+  ae:	08 c0       	rjmp	.+16     	; 0xc0 <hwInit+0x2e>
+	{
+		switchState = 1;
+  b0:	81 e0       	ldi	r24, 0x01	; 1
+  b2:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <__data_end>
+		redLED(OFF);
+  b6:	80 e0       	ldi	r24, 0x00	; 0
+  b8:	e0 df       	rcall	.-64     	; 0x7a <redLED>
+		yellowLED(ON);
+  ba:	81 e0       	ldi	r24, 0x01	; 1
+  bc:	e4 df       	rcall	.-56     	; 0x86 <yellowLED>
+  be:	06 c0       	rjmp	.+12     	; 0xcc <hwInit+0x3a>
+	}
+	else
+	{
+		switchState = 0;
+  c0:	10 92 76 00 	sts	0x0076, r1	; 0x800076 <__data_end>
+		redLED(ON);
+  c4:	81 e0       	ldi	r24, 0x01	; 1
+  c6:	d9 df       	rcall	.-78     	; 0x7a <redLED>
+		yellowLED(OFF);
+  c8:	80 e0       	ldi	r24, 0x00	; 0
+  ca:	dd df       	rcall	.-70     	; 0x86 <yellowLED>
+	}
+	
+	// toggle switch connected to INT0 -> switchState will be set by interrupt
+	// init interrupt
+	GICR |= (1<<INT0);
+  cc:	8b b7       	in	r24, 0x3b	; 59
+  ce:	80 64       	ori	r24, 0x40	; 64
+  d0:	8b bf       	out	0x3b, r24	; 59
+	MCUCR |= (1<<ISC00);
+  d2:	85 b7       	in	r24, 0x35	; 53
+  d4:	81 60       	ori	r24, 0x01	; 1
+  d6:	85 bf       	out	0x35, r24	; 53
+	sei();
+  d8:	78 94       	sei
+  da:	08 95       	ret
+
+000000dc <__vector_1>:
+	else
+		YELLOW_LED_PORT &=~(1<<YELLOW_LED_PIN);
+}
+
+ISR(INT0_vect)
+{
+  dc:	1f 92       	push	r1
+  de:	0f 92       	push	r0
+  e0:	0f b6       	in	r0, 0x3f	; 63
+  e2:	0f 92       	push	r0
+  e4:	11 24       	eor	r1, r1
+  e6:	2f 93       	push	r18
+  e8:	3f 93       	push	r19
+  ea:	4f 93       	push	r20
+  ec:	5f 93       	push	r21
+  ee:	6f 93       	push	r22
+  f0:	7f 93       	push	r23
+  f2:	8f 93       	push	r24
+  f4:	9f 93       	push	r25
+  f6:	af 93       	push	r26
+  f8:	bf 93       	push	r27
+  fa:	ef 93       	push	r30
+  fc:	ff 93       	push	r31
+	if(SWITCH_PINx & (1<<SWITCH_PIN))
+  fe:	82 9b       	sbis	0x10, 2	; 16
+ 100:	08 c0       	rjmp	.+16     	; 0x112 <__vector_1+0x36>
+	{
+		switchState = 1;
+ 102:	81 e0       	ldi	r24, 0x01	; 1
+ 104:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <__data_end>
+		redLED(OFF);
+ 108:	80 e0       	ldi	r24, 0x00	; 0
+ 10a:	b7 df       	rcall	.-146    	; 0x7a <redLED>
+		yellowLED(ON);
+ 10c:	81 e0       	ldi	r24, 0x01	; 1
+ 10e:	bb df       	rcall	.-138    	; 0x86 <yellowLED>
+ 110:	06 c0       	rjmp	.+12     	; 0x11e <__vector_1+0x42>
+	}
+	else
+	{
+		switchState = 0;
+ 112:	10 92 76 00 	sts	0x0076, r1	; 0x800076 <__data_end>
+		redLED(ON);
+ 116:	81 e0       	ldi	r24, 0x01	; 1
+ 118:	b0 df       	rcall	.-160    	; 0x7a <redLED>
+		yellowLED(OFF);
+ 11a:	80 e0       	ldi	r24, 0x00	; 0
+ 11c:	b4 df       	rcall	.-152    	; 0x86 <yellowLED>
+	}
+ 11e:	ff 91       	pop	r31
+ 120:	ef 91       	pop	r30
+ 122:	bf 91       	pop	r27
+ 124:	af 91       	pop	r26
+ 126:	9f 91       	pop	r25
+ 128:	8f 91       	pop	r24
+ 12a:	7f 91       	pop	r23
+ 12c:	6f 91       	pop	r22
+ 12e:	5f 91       	pop	r21
+ 130:	4f 91       	pop	r20
+ 132:	3f 91       	pop	r19
+ 134:	2f 91       	pop	r18
+ 136:	0f 90       	pop	r0
+ 138:	0f be       	out	0x3f, r0	; 63
+ 13a:	0f 90       	pop	r0
+ 13c:	1f 90       	pop	r1
+ 13e:	18 95       	reti
+
+00000140 <checkButton>:
+	while(cnt--)
+		for(i=1000; i; i--);
+}
+
+uint8_t checkButton()
+{
+ 140:	cf 93       	push	r28
+ 142:	df 93       	push	r29
+ 144:	a6 e6       	ldi	r26, 0x66	; 102
+ 146:	b0 e0       	ldi	r27, 0x00	; 0
+ 148:	91 e0       	ldi	r25, 0x01	; 1
+	uint8_t rowCnt,colCnt, retVal;
+	
+	retVal = 0xFF;
+ 14a:	8f ef       	ldi	r24, 0xFF	; 255
+	
+	for(rowCnt=0; rowCnt<NO_ROWS; rowCnt++)
+	{
+		ROW_PORT &= ~(1<<rowPins[rowCnt]);					// given row switch to 0
+ 14c:	61 e0       	ldi	r22, 0x01	; 1
+ 14e:	70 e0       	ldi	r23, 0x00	; 0
+ 150:	32 b3       	in	r19, 0x12	; 18
+ 152:	ed 01       	movw	r28, r26
+ 154:	ab 01       	movw	r20, r22
+ 156:	0c 90       	ld	r0, X
+ 158:	02 c0       	rjmp	.+4      	; 0x15e <checkButton+0x1e>
+ 15a:	44 0f       	add	r20, r20
+ 15c:	55 1f       	adc	r21, r21
+ 15e:	0a 94       	dec	r0
+ 160:	e2 f7       	brpl	.-8      	; 0x15a <checkButton+0x1a>
+ 162:	24 2f       	mov	r18, r20
+ 164:	20 95       	com	r18
+ 166:	23 23       	and	r18, r19
+ 168:	22 bb       	out	0x12, r18	; 18
+ 16a:	e0 e6       	ldi	r30, 0x60	; 96
+ 16c:	f0 e0       	ldi	r31, 0x00	; 0
+ 16e:	46 e0       	ldi	r20, 0x06	; 6
+ 170:	49 0f       	add	r20, r25
+		for(colCnt=0; colCnt<NO_COLS; colCnt++)
+		{
+			if((COL_PINx & (1<<colPins[colCnt])) == 0)		// check whether a button is pushed in the row
+ 172:	23 b3       	in	r18, 0x13	; 19
+ 174:	30 e0       	ldi	r19, 0x00	; 0
+ 176:	01 90       	ld	r0, Z+
+ 178:	02 c0       	rjmp	.+4      	; 0x17e <checkButton+0x3e>
+ 17a:	35 95       	asr	r19
+ 17c:	27 95       	ror	r18
+ 17e:	0a 94       	dec	r0
+ 180:	e2 f7       	brpl	.-8      	; 0x17a <checkButton+0x3a>
+ 182:	20 ff       	sbrs	r18, 0
+				retVal = (NO_COLS * rowCnt + colCnt + 1);		// if pushed, store the button id
+ 184:	89 2f       	mov	r24, r25
+ 186:	9f 5f       	subi	r25, 0xFF	; 255
+	retVal = 0xFF;
+	
+	for(rowCnt=0; rowCnt<NO_ROWS; rowCnt++)
+	{
+		ROW_PORT &= ~(1<<rowPins[rowCnt]);					// given row switch to 0
+		for(colCnt=0; colCnt<NO_COLS; colCnt++)
+ 188:	94 13       	cpse	r25, r20
+ 18a:	f3 cf       	rjmp	.-26     	; 0x172 <checkButton+0x32>
+		{
+			if((COL_PINx & (1<<colPins[colCnt])) == 0)		// check whether a button is pushed in the row
+				retVal = (NO_COLS * rowCnt + colCnt + 1);		// if pushed, store the button id
+		}
+		ROW_PORT |= (1<<rowPins[rowCnt]);					// given row switch back to 1
+ 18c:	92 b3       	in	r25, 0x12	; 18
+ 18e:	11 96       	adiw	r26, 0x01	; 1
+ 190:	9b 01       	movw	r18, r22
+ 192:	08 80       	ld	r0, Y
+ 194:	02 c0       	rjmp	.+4      	; 0x19a <checkButton+0x5a>
+ 196:	22 0f       	add	r18, r18
+ 198:	33 1f       	adc	r19, r19
+ 19a:	0a 94       	dec	r0
+ 19c:	e2 f7       	brpl	.-8      	; 0x196 <checkButton+0x56>
+ 19e:	29 2b       	or	r18, r25
+ 1a0:	22 bb       	out	0x12, r18	; 18
+ 1a2:	94 2f       	mov	r25, r20
+{
+	uint8_t rowCnt,colCnt, retVal;
+	
+	retVal = 0xFF;
+	
+	for(rowCnt=0; rowCnt<NO_ROWS; rowCnt++)
+ 1a4:	4f 31       	cpi	r20, 0x1F	; 31
+ 1a6:	a1 f6       	brne	.-88     	; 0x150 <checkButton+0x10>
+				retVal = (NO_COLS * rowCnt + colCnt + 1);		// if pushed, store the button id
+		}
+		ROW_PORT |= (1<<rowPins[rowCnt]);					// given row switch back to 1
+	}
+	return retVal;
+}
+ 1a8:	df 91       	pop	r29
+ 1aa:	cf 91       	pop	r28
+ 1ac:	08 95       	ret
+
+000001ae <main>:
+
+int main(void)
+{
+	uint8_t button;
+	
+	hwInit();
+ 1ae:	71 df       	rcall	.-286    	; 0x92 <hwInit>
+    
+	delay(2000);		// wait for MP3 module to init
+	
+	mp3SendCmd(CMD_SOURCE, SOURCE_TF);		// send source command to MP3, to play from microSD card
+ 1b0:	61 e0       	ldi	r22, 0x01	; 1
+ 1b2:	70 e0       	ldi	r23, 0x00	; 0
+ 1b4:	89 e0       	ldi	r24, 0x09	; 9
+ 1b6:	30 d0       	rcall	.+96     	; 0x218 <mp3SendCmd>
+
+	while(1)
+	{
+		button = checkButton();
+ 1b8:	c3 df       	rcall	.-122    	; 0x140 <checkButton>
+
+		if(button != 0xFF)
+ 1ba:	8f 3f       	cpi	r24, 0xFF	; 255
+ 1bc:	e9 f3       	breq	.-6      	; 0x1b8 <main+0xa>
+		{
+			if(switchState)				// language selection from toggleSwitch
+ 1be:	90 91 76 00 	lds	r25, 0x0076	; 0x800076 <__data_end>
+ 1c2:	99 23       	and	r25, r25
+ 1c4:	41 f0       	breq	.+16     	; 0x1d6 <main+0x28>
+			{
+				mp3SendCmd(CMD_FOLDER_PLAY, 0x200 + button);		// play MP3 from directory 02
+ 1c6:	68 2f       	mov	r22, r24
+ 1c8:	70 e0       	ldi	r23, 0x00	; 0
+ 1ca:	7e 5f       	subi	r23, 0xFE	; 254
+ 1cc:	8f e0       	ldi	r24, 0x0F	; 15
+ 1ce:	24 d0       	rcall	.+72     	; 0x218 <mp3SendCmd>
+				yellowLED(OFF);										// turn off yellow feedback LED
+ 1d0:	80 e0       	ldi	r24, 0x00	; 0
+ 1d2:	59 df       	rcall	.-334    	; 0x86 <yellowLED>
+ 1d4:	07 c0       	rjmp	.+14     	; 0x1e4 <main+0x36>
+			}
+			else
+			{
+				mp3SendCmd(CMD_FOLDER_PLAY, 0x100 + button);		// play MP3 from directory 01
+ 1d6:	68 2f       	mov	r22, r24
+ 1d8:	70 e0       	ldi	r23, 0x00	; 0
+ 1da:	73 95       	inc	r23
+ 1dc:	8f e0       	ldi	r24, 0x0F	; 15
+ 1de:	1c d0       	rcall	.+56     	; 0x218 <mp3SendCmd>
+				redLED(OFF);										// turn off red feedback LED
+ 1e0:	80 e0       	ldi	r24, 0x00	; 0
+ 1e2:	4b df       	rcall	.-362    	; 0x7a <redLED>
+			}
+			delay(200);												// not so pretty debouncing to buttons
+			if(switchState)	yellowLED(ON);
+ 1e4:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <__data_end>
+ 1e8:	88 23       	and	r24, r24
+ 1ea:	19 f0       	breq	.+6      	; 0x1f2 <main+0x44>
+ 1ec:	81 e0       	ldi	r24, 0x01	; 1
+ 1ee:	4b df       	rcall	.-362    	; 0x86 <yellowLED>
+ 1f0:	e3 cf       	rjmp	.-58     	; 0x1b8 <main+0xa>
+			else redLED(ON);
+ 1f2:	81 e0       	ldi	r24, 0x01	; 1
+ 1f4:	42 df       	rcall	.-380    	; 0x7a <redLED>
+ 1f6:	e0 cf       	rjmp	.-64     	; 0x1b8 <main+0xa>
+
+000001f8 <mp3GetChecksum>:
+		return OK;
+	else
+		return FAIL;
+}
+
+uint16_t mp3GetChecksum () {
+ 1f8:	ec e6       	ldi	r30, 0x6C	; 108
+ 1fa:	f0 e0       	ldi	r31, 0x00	; 0
+ 1fc:	42 e7       	ldi	r20, 0x72	; 114
+ 1fe:	50 e0       	ldi	r21, 0x00	; 0
+	uint16_t sum = 0;
+ 200:	80 e0       	ldi	r24, 0x00	; 0
+ 202:	90 e0       	ldi	r25, 0x00	; 0
+	for (int i=1; i<7; i++) {
+		sum += mp3SendBuff[i];
+ 204:	21 91       	ld	r18, Z+
+ 206:	82 0f       	add	r24, r18
+ 208:	91 1d       	adc	r25, r1
+		return FAIL;
+}
+
+uint16_t mp3GetChecksum () {
+	uint16_t sum = 0;
+	for (int i=1; i<7; i++) {
+ 20a:	e4 17       	cp	r30, r20
+ 20c:	f5 07       	cpc	r31, r21
+ 20e:	d1 f7       	brne	.-12     	; 0x204 <mp3GetChecksum+0xc>
+		sum += mp3SendBuff[i];
+	}
+	
+	return -sum;
+}
+ 210:	91 95       	neg	r25
+ 212:	81 95       	neg	r24
+ 214:	91 09       	sbc	r25, r1
+ 216:	08 95       	ret
+
+00000218 <mp3SendCmd>:
+
+void mp3SendCmd(uint8_t cmd, uint16_t arg)
+{
+ 218:	0f 93       	push	r16
+ 21a:	1f 93       	push	r17
+ 21c:	cf 93       	push	r28
+ 21e:	df 93       	push	r29
+	uint16_t temp_sum, i;
+	 
+	mp3SendBuff[2] = MP3_MSG_LENGTH - 4;
+ 220:	cb e6       	ldi	r28, 0x6B	; 107
+ 222:	d0 e0       	ldi	r29, 0x00	; 0
+ 224:	96 e0       	ldi	r25, 0x06	; 6
+ 226:	9a 83       	std	Y+2, r25	; 0x02
+	mp3SendBuff[3] = cmd;
+ 228:	8b 83       	std	Y+3, r24	; 0x03
+	mp3SendBuff[4] = 0;
+ 22a:	1c 82       	std	Y+4, r1	; 0x04
+	mp3SendBuff[5] = arg>>8;
+ 22c:	7d 83       	std	Y+5, r23	; 0x05
+	mp3SendBuff[6] = (uint8_t)arg;
+ 22e:	6e 83       	std	Y+6, r22	; 0x06
+	
+	temp_sum = mp3GetChecksum();
+ 230:	e3 df       	rcall	.-58     	; 0x1f8 <mp3GetChecksum>
+	mp3SendBuff[7] = temp_sum>>8;
+ 232:	9f 83       	std	Y+7, r25	; 0x07
+	mp3SendBuff[8] = (uint8_t)temp_sum;
+ 234:	88 87       	std	Y+8, r24	; 0x08
+	mp3SendBuff[9] = 0xEF;
+ 236:	8f ee       	ldi	r24, 0xEF	; 239
+ 238:	89 87       	std	Y+9, r24	; 0x09
+ 23a:	05 e7       	ldi	r16, 0x75	; 117
+ 23c:	10 e0       	ldi	r17, 0x00	; 0
+	
+	for(i=0; i<MP3_MSG_LENGTH; i++)
+		uartSendByte(mp3SendBuff[i]);
+ 23e:	89 91       	ld	r24, Y+
+ 240:	18 df       	rcall	.-464    	; 0x72 <uartSendByte>
+	temp_sum = mp3GetChecksum();
+	mp3SendBuff[7] = temp_sum>>8;
+	mp3SendBuff[8] = (uint8_t)temp_sum;
+	mp3SendBuff[9] = 0xEF;
+	
+	for(i=0; i<MP3_MSG_LENGTH; i++)
+ 242:	c0 17       	cp	r28, r16
+ 244:	d1 07       	cpc	r29, r17
+ 246:	d9 f7       	brne	.-10     	; 0x23e <mp3SendCmd+0x26>
+		uartSendByte(mp3SendBuff[i]);
+ 248:	df 91       	pop	r29
+ 24a:	cf 91       	pop	r28
+ 24c:	1f 91       	pop	r17
+ 24e:	0f 91       	pop	r16
+ 250:	08 95       	ret
+
+00000252 <_exit>:
+ 252:	f8 94       	cli
+
+00000254 <__stop_program>:
+ 254:	ff cf       	rjmp	.-2      	; 0x254 <__stop_program>
